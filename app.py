@@ -151,7 +151,7 @@ def allusers():
     allusers_fetched = db.execute('select * from users')
     allusers = allusers_fetched.fetchall()
 
-    return render_template('allusers.html', user=user, allusers = allusers)
+    return render_template('allusers.html', user=user, allusers = alluser)
 
 @app.route('/addTeacher/<int:id>', methods=["POST", "GET"])
 def addTeacher(id):
