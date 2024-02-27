@@ -103,7 +103,6 @@ def register():
 
 @app.route('/askquestions', methods = ["POST", "GET"])
 def askquestions():
-    date = datetime.date.today()
     user = get_current_user()
     db = getDatabase()
     # Getting the input from the question and name of teacher and sending them to the database to be stored
@@ -116,7 +115,7 @@ def askquestions():
     # This is getting all from users where teacher = 1 i.e all teachers
     teacher_cursor = db.execute('select * from users where teacher = 1')
     allteachers = teacher_cursor.fetchall()
-    return render_template("askquestions.html", user = user, allteachers = allteachers, date = date)
+    return render_template("askquestions.html", user = user, allteachers = allteachers)
 
 
 @app.route('/unansweredquestions')
