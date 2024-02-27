@@ -32,7 +32,7 @@
         {% for eachuser in allusers %}
           <a href="{{ url_for('addTeacher', id = eachuser['id']) }}" 
           class="list-group-item list-group-item-action mb-1  {% if eachuser['teacher'] == 1 %}
-           linkcolor  {% endif %}    {% if eachuser['admin'] == 1 %} custom-darkslategray {% endif %}">
+           linkcolor  {% endif %}    {% if eachuser['admin'] == 1 %} custom  {% endif %}">
             Name : {{ eachuser['name'] }} Designation Teacher : {{
               eachuser['teacher'] }} Admin : {{ eachuser['admin']}}
           </a>
