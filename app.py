@@ -42,7 +42,10 @@ def get_current_user():
 def index():
     user = get_current_user()
     db = getDatabase()
-    geting_all = db.execute('select questions.question_text, questions.answer_text, askersname.name AS askersname, answeredby.name AS answeredby FROM questions JOIN users AS askersname ON askersname.id = questions.asked_by_id  JOIN users AS answeredby ON answeredby.id = questions.teacher_id WHERE questions.answer_text IS NOT NULL')
+    geting_all = db.execute('select questions.question_text, questions.answer_text,\
+    askersname.name AS askersname, answeredby.name AS answeredby FROM questions JOIN \
+    users AS askersname ON askersname.id = questions.asked_by_id JOIN users AS answeredby \
+     ON answeredby.id = questions.teacher_id WHERE questions.answer_text IS NOT NULL')
     fetching_all = geting_all.fetchall()
     
     return render_template('home.html', user = user, fetching_all = fetching_all)
@@ -120,7 +123,9 @@ def askquestions():
 def unansweredquestions():
     user = get_current_user()
     db = getDatabase()
-    question_cursor = db.execute("select questions.id, questions.question_text, users.name from questions join users on users.id = questions.asked_by_id where questions.answer_text is null and questions.teacher_id = ?", [user['id']]) 
+    question_cursor = db.execute("select questions.id, questions.question_text,\
+    users.name from questions join users on users.id = questions.asked_by_id \
+     where questions.answer_text is null and questions.teacher_id = ?", [user['id']]) 
     allquestions = question_cursor.fetchall()
     return render_template("unansweredquestions.html", user = user, allquestions = allquestions)
 
